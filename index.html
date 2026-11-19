@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Happy 19/11 - Món Quà Nhỏ Dành Cho Anh 💕</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+</head>
+<body>
+
+  <!-- ======================================================================
+       SCENE 1: Cute Pink Gateway & Login
+       ====================================================================== -->
+  <section id="scene-1">
+    <!-- Floating cute items -->
+    <div class="floating-elements">
+      <div class="float-item item-1">🧸</div>
+      <div class="float-item item-2">🎈</div>
+      <div class="float-item item-3">💖</div>
+      <div class="float-item item-4">🌹</div>
+      <div class="float-item item-5">✨</div>
+      <div class="float-item item-6">💌</div>
+      <div class="float-item item-7">🎀</div>
+      <div class="float-item item-8">🌸</div>
+      <div class="bg-sparkle" style="top: 15%; left: 45%;">✦</div>
+      <div class="bg-sparkle" style="top: 75%; left: 35%;">✦</div>
+      <div class="bg-sparkle" style="top: 60%; left: 80%;">✦</div>
+      <div class="bg-sparkle" style="top: 25%; left: 75%;">✦</div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card" id="login-card">
+      <div class="login-header">
+        <div class="cute-badge">
+          <span>🧸</span> 19.11 Special Day <span>💕</span>
+        </div>
+        <h1>A Little Surprise</h1>
+        <p>Nhập thông tin bí mật để mở khóa món quà đặc biệt nha!</p>
+      </div>
+
+      <form id="login-form" autocomplete="off">
+        <div class="form-group">
+          <label for="username">
+            <span>👤</span> Tên tài khoản
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">💙</span>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              placeholder="Họ và tên của anh..." 
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">
+            <span>🔑</span> Mật khẩu
+          </label>
+          <div class="input-wrapper">
+            <span class="input-icon">💖</span>
+            <input 
+              type="text" 
+              id="password" 
+              name="password" 
+              placeholder="Họ và tên của bạn gái anh..." 
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Hint / Error Tooltip -->
+        <div class="login-tooltip" id="login-tooltip"></div>
+
+        <button type="submit" class="btn-submit" id="login-submit-btn">
+          <span>Mở Hộp Quà Bí Mật</span>
+          <span>🎁</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       WARP TRANSITION OVERLAY
+       ====================================================================== -->
+  <div id="warp-overlay"></div>
+
+  <!-- ======================================================================
+       SCENE 2: 360° Cosmic Love Universe
+       ====================================================================== -->
+  <section id="scene-2" class="hidden">
+    <!-- 3D WebGL Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- HUD Overlay -->
+    <div class="hud-overlay">
+      <div class="hud-top-bar">
+        <div class="hud-pill hud-title-badge">
+          <span>✨</span>
+          <span>Vũ Trụ 19/11 Của Tụi Mình</span>
+        </div>
+
+        <div class="hud-controls-group">
+          <button class="hud-pill" id="quick-letter-btn" title="Mở bức thư tình 19/11">
+            <span>💌</span>
+            <span>Đọc Thư</span>
+          </button>
+
+          <button class="hud-pill" id="curator-btn" title="Quản lý thêm ảnh & nhạc">
+            <span>⚙️</span>
+            <span>Tùy chỉnh</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hud-bottom-hint">
+        <span>💡 Giữ chuột & kéo để ngắm không gian 360° • Click vào ảnh để phóng to • Click vào bức thư để mở quà! 💖</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       LOVE LETTER MODAL (With Couple Photo at Bottom Right)
+       ====================================================================== -->
+  <div id="letter-modal">
+    <div class="letter-paper">
+      <div class="letter-wax-seal">💖</div>
+      <button class="letter-close-btn" id="letter-close-btn" title="Đóng thư">✕</button>
+
+      <div class="letter-header">
+        <div class="letter-title" id="letter-title">✨ Nhân ngày 19/11 ✨</div>
+        <div class="letter-divider">🌸 • 💕 • 🌸</div>
+      </div>
+
+      <div class="letter-body">
+        <div class="letter-greeting" id="letter-greeting">Gửi anh yêu,</div>
+        <div class="letter-body-text" id="letter-body">
+          <!-- Populated from config -->
+        </div>
+      </div>
+
+      <!-- Letter Footer with signoff on the left and Couple Polaroid on bottom-right -->
+      <div class="letter-footer-section">
+        <div class="letter-signoff">
+          <div class="letter-closing" id="letter-closing">Love u &lt;3</div>
+          <div class="letter-signature" id="letter-signature">Lê Quyên 💌</div>
+        </div>
+
+        <!-- Couple Polaroid Keepsake -->
+        <div class="letter-polaroid-keepsake">
+          <div class="washi-tape"></div>
+          <img id="letter-couple-photo" src="assets/images/letter_photo.jpg" alt="Đoàn Chung Tú & Trần Nhựt Lê Quyên">
+          <div class="letter-polaroid-caption">Tú & Quyên 💕</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       PHOTO ZOOM / INSPECTION OVERLAY
+       ====================================================================== -->
+  <div id="photo-zoom-overlay">
+    <div class="zoom-card">
+      <button class="zoom-close-btn" id="zoom-close-btn">✕</button>
+      <img id="zoom-img" src="" alt="Zoomed Memory">
+      <div class="zoom-footer">
+        <div class="zoom-caption" id="zoom-caption"></div>
+        <div class="zoom-date" id="zoom-date"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       CURATOR / SETTINGS MODAL
+       ====================================================================== -->
+  <div id="curator-modal">
+    <div class="curator-card">
+      <div class="curator-header">
+        <h2>🎨 Quản Lý Ảnh & Nhạc Của Tụi Mình</h2>
+        <button class="letter-close-btn" id="curator-close-btn">✕</button>
+      </div>
+
+      <div class="curator-section">
+        <h3><span>📸</span> Thêm ảnh kỷ niệm mới vào vũ trụ 3D</h3>
+        <div class="curator-row">
+          <label class="btn-file-select" for="curator-photo-input">Chọn file ảnh...</label>
+          <input type="file" id="curator-photo-input" accept="image/*">
+          <input type="text" id="curator-caption-input" placeholder="Viết dòng chú thích ngọt ngào...">
+          <button class="btn-action" id="curator-add-btn">Thêm</button>
+        </div>
+      </div>
+
+      <div class="curator-section">
+        <h3><span>🎵</span> Đổi bài hát kỷ niệm</h3>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 8px;">
+          (Bạn cũng có thể copy file nhạc trực tiếp vào thư mục <code>assets/audio/music.wav</code>)
+        </p>
+        <div class="curator-row">
+          <label class="btn-file-select" for="curator-audio-input">Tải lên bài hát mới...</label>
+          <input type="file" id="curator-audio-input" accept="audio/*">
+        </div>
+      </div>
+
+      <div class="curator-section">
+        <h3><span>🖼️</span> Các ảnh hiện có trong vũ trụ</h3>
+        <div class="curator-photos-grid" id="curator-photos-grid">
+          <!-- Populated dynamically -->
+        </div>
+        <div style="margin-top: 14px; text-align: right;">
+          <button class="btn-action secondary" id="curator-reset-btn">Khôi phục mặc định</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       SCRIPTS
+       ====================================================================== -->
+  <!-- Three.js & OrbitControls from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Application Logic -->
+  <script src="js/photosData.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/mediaManager.js"></script>
+  <script src="js/spaceScene.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>
